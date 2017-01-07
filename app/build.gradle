@@ -34,11 +34,21 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
 
     compile rootProject.ext.dependencies["appcompat-v7"]
+
     compile rootProject.ext.dependencies["okhttp"]
     compile rootProject.ext.dependencies["retrofit"]
+    compile rootProject.ext.dependencies["retrofit-gson"]
+    compile rootProject.ext.dependencies["retrofit-rxjava"]
     compile rootProject.ext.dependencies["rxandroid"]
     compile rootProject.ext.dependencies["rxjava"]
     compile rootProject.ext.dependencies["logger"]
+
+    compile rootProject.ext.dependencies["dagger"]
+    annotationProcessor rootProject.ext.dependencies["dagger-compiler"]
+
+
+    compile rootProject.ext.dependencies["butterknife"]
+    annotationProcessor rootProject.ext.dependencies["butterknife-compiler"]
 
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
