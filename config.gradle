@@ -10,6 +10,7 @@ ext {
 
     dependencies = ["appcompat-v7"          : "com.android.support:appcompat-v7:25.0.1",
                     "okhttp"                : "com.squareup.okhttp3:okhttp:3.5.0",
+                    "okhttp-logging-interceptor": "com.squareup.okhttp3:logging-interceptor:3.5.0",
                     "retrofit"              : "com.squareup.retrofit2:retrofit:2.1.0",
                     "retrofit-gson"         : "com.squareup.retrofit2:converter-gson:2.1.0",
                     "retrofit-rxjava"       : "com.squareup.retrofit2:adapter-rxjava:2.1.0",

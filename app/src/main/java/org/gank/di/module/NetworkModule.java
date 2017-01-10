@@ -2,6 +2,7 @@ package org.gank.di.module;
 
 import org.gank.app.API;
 import org.gank.service.ApiService;
+import org.gank.util.LogUtil;
 
 import java.util.concurrent.TimeUnit;
 
@@ -10,6 +11,7 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -26,7 +28,9 @@ public class NetworkModule {
     OkHttpClient provideOkHttpClient() {
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .connectTimeout(60 * 1000, TimeUnit.MILLISECONDS)
-                .readTimeout(60 * 1000, TimeUnit.MILLISECONDS).build();
+                .readTimeout(60 * 1000, TimeUnit.MILLISECONDS)
+                .addInterceptor(new HttpLoggingInterceptor(message -> LogUtil.d(message)))
+                .build();
 
         return okHttpClient;
     }

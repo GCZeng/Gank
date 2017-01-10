@@ -6,6 +6,7 @@ import org.gank.di.component.AppComponent;
 import org.gank.di.component.DaggerAppComponent;
 import org.gank.di.module.AppModule;
 import org.gank.di.module.NetworkModule;
+import org.gank.util.LogUtil;
 
 /**
  * Application
@@ -24,6 +25,8 @@ public class App extends Application {
         App.sInstance=this;
 
         setupCompoent();
+
+        LogUtil.init();
 
     }
 

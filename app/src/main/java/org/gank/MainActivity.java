@@ -10,6 +10,7 @@ import org.gank.di.module.main.MainModule;
 import org.gank.presenter.main.MainPresenter;
 import org.gank.ui.activity.base.BaseActivity;
 import org.gank.ui.contract.MainContract;
+import org.gank.util.LogUtil;
 
 import java.util.List;
 
@@ -53,6 +54,8 @@ public class MainActivity extends BaseActivity implements MainContract.View {
             sb.append(gankData.getDesc());
             sb.append("\n");
         }
+
+        LogUtil.d(sb.toString());
 
         textview.setText(sb.toString());
     }
