@@ -19,12 +19,16 @@ public abstract class BaseActivity extends AppCompatActivity {
 
 
     protected abstract int provideContentViewId();
+    protected abstract void initView();
+    protected abstract void initData();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(provideContentViewId());
+        initView();
         initAppComponent(App.getInstance().getAppComponent());
+        initData();
     }
 
     /**
