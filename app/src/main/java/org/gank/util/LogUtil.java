@@ -18,10 +18,10 @@ public class LogUtil {
 
     public static void init() {
         Logger.init(TAG)                 // default PRETTYLOGGER or use just init()
-                .methodCount(3)                 // default 2
+                .methodCount(0)                 // default 2
                 .hideThreadInfo()               // default shown
                 .logLevel(isDebug ? LogLevel.FULL : LogLevel.NONE)        // default LogLevel.FULL
-                .methodOffset(2);                // default 0
+                .methodOffset(0);                // default 0
     }
 
     public static void d(String msg) {

@@ -2,6 +2,8 @@ package org.gank.app;
 
 import android.app.Application;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
+
 import org.gank.di.component.AppComponent;
 import org.gank.di.component.DaggerAppComponent;
 import org.gank.di.module.AppModule;
@@ -27,6 +29,8 @@ public class App extends Application {
         setupCompoent();
 
         LogUtil.init();
+
+        Fresco.initialize(this);
 
     }
 

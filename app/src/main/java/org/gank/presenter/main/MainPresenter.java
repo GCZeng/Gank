@@ -22,7 +22,7 @@ public class MainPresenter extends BasePresenter implements MainContract.Present
 
     @Override
     public GankData getGankData() {
-        apiService.getGankData("all", 10, 1)
+        apiService.getGankData("休息视频", 10, 1)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<GankDataModel>() {
