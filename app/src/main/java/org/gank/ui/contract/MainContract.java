@@ -1,7 +1,6 @@
 package org.gank.ui.contract;
 
-import org.gank.data.entity.GankData;
-import org.gank.data.model.GankDataModel;
+import android.support.v7.widget.RecyclerView;
 
 /**
  * Created by Nick on 2017/1/7
@@ -9,12 +8,23 @@ import org.gank.data.model.GankDataModel;
 public class MainContract {
     public interface View {
 
-        void showMsg(GankDataModel gankDataModel);
+        /**
+         * 设置适配器
+         *
+         * @param adapter
+         */
+        void setAdapter(RecyclerView.Adapter adapter);
+
+        /**
+         * 刷新完成
+         */
+        void refreshComplete();
 
     }
 
     public interface Presenter {
-        GankData getGankData();
+
+        void loadGankData(boolean clean);
     }
 
 }

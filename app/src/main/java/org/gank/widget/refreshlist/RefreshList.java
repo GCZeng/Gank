@@ -33,4 +33,5 @@ public class RefreshList extends SwipeRefreshLayout implements RefreshInterface 
     public interface Refresh {
         void refreh();
     }
+
 }

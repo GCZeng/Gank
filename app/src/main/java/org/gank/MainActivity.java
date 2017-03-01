@@ -4,23 +4,14 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.TypedValue;
 
-import com.google.gson.Gson;
-
-import org.gank.data.entity.GankData;
-import org.gank.data.model.GankDataModel;
 import org.gank.di.component.AppComponent;
 import org.gank.di.module.main.MainModule;
 import org.gank.presenter.main.MainPresenter;
 import org.gank.ui.activity.base.BaseActivity;
-import org.gank.ui.adapter.HomeAdapter;
 import org.gank.ui.adapter.decoration.HomeItemDecoration;
 import org.gank.ui.contract.MainContract;
-import org.gank.util.LogUtil;
 import org.gank.util.ToastUtil;
 import org.gank.widget.refreshlist.RefreshList;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.inject.Inject;
 
@@ -35,9 +26,6 @@ public class MainActivity extends BaseActivity implements MainContract.View {
 
     @Inject MainPresenter mainPresenter;
 
-    private HomeAdapter mHomeAdapter = null;
-    private List<GankData> mHomeList = null;
-
     @Override
     protected int provideContentViewId() {
         return R.layout.activity_main;
@@ -50,7 +38,7 @@ public class MainActivity extends BaseActivity implements MainContract.View {
 //        rl_list.setColorScheme(R.color.color1, R.color.color2,R.color.color3, R.color.color4);
         rl_list.refresh(() -> {
             ToastUtil.showShort("刷新");
-            mainPresenter.getGankData();
+            mainPresenter.loadGankData(true);
         });
 
         // 这句话是为了，第一次进入页面的时候显示加载进度条
@@ -59,13 +47,11 @@ public class MainActivity extends BaseActivity implements MainContract.View {
                         .getDisplayMetrics()));
 
         //设置布局管理器
-        rv_list.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
+        rv_list.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
 
         //设置adapter
-        mHomeList = new ArrayList<>();
-        mHomeAdapter = new HomeAdapter(mHomeList);
         rv_list.setHasFixedSize(true);
-        rv_list.setAdapter(mHomeAdapter);
+
 
         //间隔
         rv_list.addItemDecoration(new HomeItemDecoration(this));
@@ -74,7 +60,8 @@ public class MainActivity extends BaseActivity implements MainContract.View {
 
     @Override
     protected void initData() {
-
+        rl_list.setRefreshing(true);
+        mainPresenter.loadGankData(true);
     }
 
     @Override
@@ -83,26 +70,12 @@ public class MainActivity extends BaseActivity implements MainContract.View {
     }
 
     @Override
-    public void showMsg(GankDataModel gankDataModel) {
-        List<GankData> list = gankDataModel.getResults();
-        StringBuilder sb = new StringBuilder();
+    public void setAdapter(RecyclerView.Adapter adapter) {
+        rv_list.setAdapter(adapter);
+    }
 
-        Gson gson = new Gson();
-        LogUtil.json(gson.toJson(gankDataModel));
-
-        for (GankData gankData : list) {
-            sb.append(gankData.getDesc());
-            sb.append("\n");
-        }
-
-        LogUtil.d(sb.toString());
-
-        if(list!=null){
-            mHomeList.addAll(list);
-            mHomeAdapter.notifyDataSetChanged();
-        }
-
+    @Override
+    public void refreshComplete() {
         rl_list.refreshComplete();
-
     }
 }

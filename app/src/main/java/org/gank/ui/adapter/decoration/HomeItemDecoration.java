@@ -75,8 +75,6 @@ public class HomeItemDecoration extends RecyclerView.ItemDecoration {
     // Item之间的留白
     @Override
     public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
-        outRect.set(0, 0, 0, mDivider.getIntrinsicHeight());
-//        LogUtil.d(mDivider.getIntrinsicWidth() + "," + mDivider.getIntrinsicHeight());
-//        outRect.set(10, 20, 10, 0);
+        outRect.set(0, 0, 0, 0);
     }
 }

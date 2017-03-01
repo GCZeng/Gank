@@ -19,6 +19,7 @@ public class App extends Application {
     private static App sInstance;
     private AppComponent mAppComponent;
 
+    public final static int pagesize = 10;
 
     @Override
     public void onCreate() {

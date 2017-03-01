@@ -4,15 +4,14 @@
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:background="@android:color/transparent"
-              android:orientation="vertical"
-              android:paddingLeft="5dp"
-              android:paddingRight="5dp">
+              android:orientation="vertical">
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:cardCornerRadius="5dp"
-        app:cardElevation="5dp">
+        app:cardElevation="5dp"
+        android:layout_margin="5dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -20,8 +19,10 @@
 
             <com.facebook.drawee.view.SimpleDraweeView
                 android:id="@+id/sdv_pic"
-                android:layout_width="130dp"
-                android:layout_height="130dp"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:scaleType="centerCrop"
+                android:foreground="?android:attr/selectableItemBackground"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"/>
 
@@ -29,7 +30,9 @@
                 android:id="@+id/tv_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/sdv_pic"/>
+                android:layout_below="@+id/sdv_pic"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:padding="5dp"/>
         </RelativeLayout>
     </android.support.v7.widget.CardView>
 </LinearLayout>
